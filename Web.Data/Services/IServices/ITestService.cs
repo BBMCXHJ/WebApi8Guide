@@ -9,5 +9,7 @@ namespace Web.Data.Services.IServices
     public interface ITestService
     {
         public string GetServerName();
+
+        public string GetAppName();
     }
 }

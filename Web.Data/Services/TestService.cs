@@ -16,5 +16,7 @@ namespace Web.Data.Services
         /// </summary>
         /// <returns>string</returns>
         public string GetServerName() => SqlHelper.ExecuteScalar<string>(_appSettingsService.GetConnectionString(), CommandType.Text, "SELECT @@SERVERNAME");
+
+        public string GetAppName() => _appSettingsService.GetAppName();
     }
 }

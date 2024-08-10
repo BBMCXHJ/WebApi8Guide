@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,13 @@ namespace Web.Data.Services
 {
     public class AppSettingService : IAppSettingService
     {
-        public static AppSetting _appSettings;
-        public AppSettingService(IConfiguration configuration) => _appSettings = configuration.GetSection("ConnectionStrings").Get<AppSetting>();
+        public static IOptionsMonitor<AppSetting> _appSettings;
+        public AppSettingService(IOptionsMonitor<AppSetting> configuration) => _appSettings = configuration;
 
-        public string GetAppName() => _appSettings.AppName;
+        public string GetAppName() => _appSettings.CurrentValue.AppName;
 
-        public AppSetting GetAppSettings() => _appSettings;
+        public AppSetting GetAppSettings() => _appSettings.CurrentValue;
 
-        public string GetConnectionString() => _appSettings.DefaultDb;
+        public string GetConnectionString() => _appSettings.CurrentValue.DefaultDb;
     }
 }

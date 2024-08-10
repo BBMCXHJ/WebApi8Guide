@@ -36,5 +36,11 @@ namespace WebApi8Guide.Controllers
             string serverName = _testService.GetServerName();
             return Ok(serverName);
         }
+
+        public ActionResult<string> GetAppName()
+        {
+            string appName = _testService.GetAppName();
+            return appName;
+        }
     }
 }

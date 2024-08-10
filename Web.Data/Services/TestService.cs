@@ -9,19 +9,12 @@ namespace Web.Data.Services
     {
         private readonly IAppSettingService _appSettingsService;
 
-        public TestService(IAppSettingService appSettingsService)
-        {
-            _appSettingsService = appSettingsService;
-        }
+        public TestService(IAppSettingService appSettingsService) => _appSettingsService = appSettingsService;
+
         /// <summary>
         /// 获取数据库服务器名
         /// </summary>
         /// <returns>string</returns>
-        public string GetServerName()
-        {
-            return SqlHelper.ExecuteScalar<string>(_appSettingsService.GetConnectionString(), CommandType.Text,
-                "SELECT @@SERVERNAME");
-
-        }
+        public string GetServerName() => SqlHelper.ExecuteScalar<string>(_appSettingsService.GetConnectionString(), CommandType.Text, "SELECT @@SERVERNAME");
     }
 }

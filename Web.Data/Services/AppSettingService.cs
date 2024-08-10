@@ -12,24 +12,12 @@ namespace Web.Data.Services
     public class AppSettingService : IAppSettingService
     {
         public static AppSetting _appSettings;
-        public AppSettingService(IConfiguration configuration)
-        {
-            _appSettings = configuration.GetSection("ConnectionStrings").Get<AppSetting>();
-        }
+        public AppSettingService(IConfiguration configuration) => _appSettings = configuration.GetSection("ConnectionStrings").Get<AppSetting>();
 
-        public string GetAppName()
-        {
-            return _appSettings.AppName;
-        }
+        public string GetAppName() => _appSettings.AppName;
 
-        public AppSetting GetAppSettings()
-        {
-            return _appSettings;
-        }
+        public AppSetting GetAppSettings() => _appSettings;
 
-        public string GetConnectionString()
-        {
-            return _appSettings.DefaultDb;
-        }
+        public string GetConnectionString() => _appSettings.DefaultDb;
     }
 }

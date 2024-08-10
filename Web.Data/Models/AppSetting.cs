@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Web.Data.Models
 {
+    /// <summary>
+    /// 映射appsettings.json中的配置
+    /// </summary>
     public class AppSetting
     {
         public string DefaultDb { get; set; }

@@ -16,7 +16,6 @@ namespace WebApi8Guide
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();

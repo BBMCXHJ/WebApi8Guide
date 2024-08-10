@@ -1,4 +1,4 @@
-namespace WebApi8Guide
+namespace WebApi8Guide.Models
 {
     public class WeatherForecast
     {

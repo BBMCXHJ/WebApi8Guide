@@ -1,3 +1,8 @@
+using Web.Data;
+using Web.Data.Models;
+using Web.Data.Services;
+using Web.Data.Services.IServices;
+
 namespace WebApi8Guide
 {
     public class Program
@@ -7,6 +12,10 @@ namespace WebApi8Guide
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.Configure<AppSetting>(builder.Configuration.GetSection("ConnectionStrings"));
+
+            builder.Services.AddSingleton<IAppSettingService, AppSettingService>();
+            builder.Services.AddScoped<ITestService, TestService>();
 
             builder.Services.AddControllers();
 

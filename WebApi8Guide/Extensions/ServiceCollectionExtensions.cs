@@ -21,33 +21,22 @@ namespace WebApi8Guide.Extensions
 
             foreach (var service in serviceClass)
             {
-                // 获取当前服务类实现的所有接口，并遍历它们 
-                //foreach (var interfaceType in service.GetInterfaces())
-                //{
+                var lifetimeAttribute = service.GetCustomAttribute<ServiceLifetimeAttribute>();
+                // 没有用ServiceLifetime自定义属性标记的服务默认注入时是Scoped
+                var lifetime = lifetimeAttribute?.Lifetime ?? ServiceLifetime.Scoped;
 
-                // 检查服务类是否有 SingletonServiceAttribute 特性  
-                bool isSingleton = service.GetCustomAttributes(typeof(SingletonServiceAttribute), false).Any();
-
-                if (isSingleton)
+                switch (lifetime)
                 {
-                    // 注册为单例(Singleton)
-                    services.AddSingleton(serviceType, service);
-                }
-                else
-                {
-                    bool isTransient = service.GetCustomAttributes(typeof(TransientServiceAttribute), false).Any();
-                    if (isTransient)
-                    {
-                        // 注册为瞬时(Transient)
+                    case ServiceLifetime.Singleton:
+                        services.AddSingleton(serviceType, service);
+                        break;
+                    case ServiceLifetime.Transient:
                         services.AddTransient(serviceType, service);
-                    }
-                    else
-                    {
-                        // 注册为作用域(Scoped)  
+                        break;
+                    default: // ServiceLifetime.Scoped  
                         services.AddScoped(serviceType, service);
-                    }
+                        break;
                 }
-                //}
             }
         }
     }

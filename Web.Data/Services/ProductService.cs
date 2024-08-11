@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using Web.Data.Services.IServices;
 
 namespace Web.Data.Services
 {
-    [TransientService]
+    [ServiceLifetime(ServiceLifetime.Transient)]
     public class ProductService : IProductService
     {
         public List<string> GetProduction()

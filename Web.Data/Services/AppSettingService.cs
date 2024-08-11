@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 using Web.Data.Models;
 using Web.Data.Services.IServices;
 using Web.Data.Attributes;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace Web.Data.Services
 {
-    [SingletonService]
+    [ServiceLifetime(ServiceLifetime.Singleton)]
     public class AppSettingService : IAppSettingService
     {
         public static IOptionsMonitor<AppSetting> _appSettings;

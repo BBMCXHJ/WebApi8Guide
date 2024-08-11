@@ -7,9 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Web.Data.Models;
 using Web.Data.Services.IServices;
+using Web.Data.Attributes;
+
 
 namespace Web.Data.Services
 {
+    [SingletonService]
     public class AppSettingService : IAppSettingService
     {
         public static IOptionsMonitor<AppSetting> _appSettings;

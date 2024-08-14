@@ -16,11 +16,7 @@ namespace WebApi8Guide
             // Add services to the container.
             builder.Services.Configure<AppSetting>(builder.Configuration.GetSection("ConnectionStrings"));
 
-            builder.Services.AddServicesFromAssemblies(new List<Type>{
-                typeof(IAppSettingService),
-                typeof(ITestService),
-                typeof(IProductService)
-            });
+            builder.Services.AddServicesFromAssemblies();
 
             builder.Services.AddControllers();
 

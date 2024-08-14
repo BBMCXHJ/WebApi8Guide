@@ -5,11 +5,13 @@ namespace WebApi8Guide.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static void AddServicesFromAssemblies(this IServiceCollection services, List<Type> serviceTypes)
+        public static void AddServicesFromAssemblies(this IServiceCollection services)
         {
-            foreach (var serviceType in serviceTypes)
+            var assembly = Assembly.Load("Web.Data");
+            var serviceInterfaces = assembly.GetTypes().Where(t => t.IsInterface);
+            foreach (var serviceType in serviceInterfaces)
             {
-                var assembly = Assembly.GetAssembly(serviceType);
+                //var assembly = Assembly.GetAssembly(serviceType);
                 AddServicesFromAssembly(services, serviceType, assembly);
             }
         }

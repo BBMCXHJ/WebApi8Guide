@@ -37,10 +37,24 @@ namespace WebApi8Guide.Controllers
             return Ok(serverName);
         }
 
+        [HttpGet]
         public ActionResult<string> GetAppName()
         {
             string appName = _testService.GetAppName();
             return appName;
+        }
+
+        [HttpGet("{id}/{name?}", Name = "getsummariesbyid")]
+        public JsonResult GetSummaries(int id, string? name)
+        {
+            return new JsonResult(new { Summaries, id, name });
+        }
+
+        [HttpGet]
+        public ActionResult GetSummariesRedirect()
+        {
+            //return RedirectToAction("GetWeathers");
+            return RedirectToRoute("getsummariesbyid", new { id = 1, name = "John" });
         }
     }
 }

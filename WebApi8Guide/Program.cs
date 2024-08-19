@@ -28,6 +28,16 @@ namespace WebApi8Guide
 
             app.MapControllers();
 
+            app.MapGet("/api/cars", () =>
+            {
+                return Results.Ok(new List<string> { "Car1", "Car2" });
+            });
+
+            app.MapGet("/api/cars/{id}", (int id) =>
+            {
+                return Results.Ok($"Car{id}");
+            });
+
             app.Run();
         }
     }

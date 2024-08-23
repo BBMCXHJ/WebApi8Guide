@@ -18,7 +18,10 @@ namespace WebApi8Guide
 
             builder.Services.AddServicesFromAssemblies();
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(option =>
+            {
+                option.ReturnHttpNotAcceptable = true;
+            }).AddXmlSerializerFormatters();
 
             var app = builder.Build();
 
